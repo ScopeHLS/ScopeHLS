@@ -7,11 +7,11 @@ ScopeHLS is a scope-aware pragma learning framework for efficient design space e
 ## Previous Work
 
 You can visit the following links to view previous representative research works:  
-- GNN-DSE DAC'22 paper: "Automated Accelerator Optimization Aided by Graph Neural Networks" 
-- HARP ICCAD'23 Best Paper Award candidate: Robust GNN-based Representation Learning for HLS
-- ProgSG Cross-Modality Program Representation Learning for Electronic Design Automation with High-Level Synthesis
-- HLSyn NeurIPS'24 HLSyn benchmark for paper "Towards a Comprehensive Benchmark for FPGA Targeted High-Level Synthesis"
-- HierarchicalMoE AAAI'25 Paper: Hierarchical Mixture of Experts: Generalizable Learning for High-Level Synthesis
+- [GNN-DSE](https://github.com/UCLA-VAST/GNN-DSE) DAC'22 paper: "Automated Accelerator Optimization Aided by Graph Neural Networks" 
+- [HARP](https://github.com/UCLA-VAST/HARP) ICCAD'23 Best Paper Award candidate: Robust GNN-based Representation Learning for HLS
+- [ProgSG](https://github.com/ZongyueQin/ProgSG) Cross-Modality Program Representation Learning for Electronic Design Automation with High-Level Synthesis
+- [HLSyn](https://github.com/UCLA-DM/HLSyn) NeurIPS'24 HLSyn benchmark for paper "Towards a Comprehensive Benchmark for FPGA Targeted High-Level Synthesis"
+- [HierarchicalMoE](https://github.com/weikai-li/HierarchicalMoE) AAAI'25 Paper: Hierarchical Mixture of Experts: Generalizable Learning for High-Level Synthesis
 
 ## Content
 1. [Requirements and Dependencies](#requirements-and-dependencies)
@@ -88,4 +88,5 @@ The following are the **essential configuration parameters** for training and in
 ### Inference
 - `inference_batch_size`: Batch size during inference (default: `64`)  
 - `inference_time`: Max inference time in seconds (default: `300`)  
+
 
