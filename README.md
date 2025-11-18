@@ -81,12 +81,6 @@ The following are the **essential configuration parameters** for training and in
 - `self_n_heads`: Number of self-attention heads (default: `4`)  
 - `decoder_layers`: Number of decoder layers (default: `6`)  
 
-### Multi-Stage Training
-- **Stage 1**: `epochs=200`, `learning_rate=5e-5`, `batch_size=32`  
-- **Stage 2**: `epochs=150`, `learning_rate=1e-5`, `batch_size=32`  
-- **Stage 3**: `epochs=100`, `learning_rate=5e-6`, `batch_size=4`  
-- **Finetune**: `epochs=10`, `learning_rate=2e-6`, `batch_size=2`  
-
 ### Dataset & Validation
 - `validation_ratio`: Ratio of validation data (default: `0.2`)  
 - `min_samples_per_group`: Minimum samples per design group (default: `20`)  
@@ -94,3 +88,4 @@ The following are the **essential configuration parameters** for training and in
 ### Inference
 - `inference_batch_size`: Batch size during inference (default: `64`)  
 - `inference_time`: Max inference time in seconds (default: `300`)  
+
