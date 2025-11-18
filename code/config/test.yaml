@@ -1,0 +1,99 @@
+# This is a configuration file for ScopeHLS model training setup.
+# It includes parameters for the model architecture, dataset, training process, and inference.
+
+
+# ---------------- Paths ----------------
+data_dir: "/path/to/Scope_HLS/data"                   # Path to training dataset directory
+demo_data_dir: "/path/to/Scope_HLS/demo_data"         # Path to demo/sample dataset directory
+model_base_dir: "/path/to/Scope_HLS/models"           # Directory to save/load model checkpoints
+codet5p_path: "/path/to/Scope_HLS/encoder_codet5"    # Pretrained CodeT5 encoder model path
+codet5p_tokenizer_path: "/path/to/Scope_HLS/encoder_codet5"  # Tokenizer path for CodeT5 encoder
+model_pth_path: ""
+
+
+# ---------------- General Hyperparameters ----------------
+dropout: 0.1              # Dropout probability for regularization to prevent overfitting
+default_alpha: 0.2
+# Optional values: [0, 0.1, 0.2, 0.5, 1]
+scores_clamp: 10          # Max value to clamp model scores
+eps: 0.000001             # Small epsilon constant for numerical stability
+random_seed: 502          # Random seed to ensure reproducibility
+
+# ---------------- Model Parameters ----------------
+pragma_layers: 2
+# Optional values: [1, 2, 3, 4, 6, 12, 18, 24]
+t5_dim: 1024
+hidden_dim: 64
+# Optional values: [16, 32, 64, 128, 256, 512, 1024]
+self_n_heads: 4
+# Optional values: [2, 4, 4, 8, 16, 16, 32]
+attention_pooling_size: 32
+# Optional values: [1, 16, 32, 64]
+decoder_layers: 6
+# Optional values: [1, 2, 4, 6, 8, 12, 18, 24]
+
+no_scope_blocks: [1, 2, 3]
+# Optional values: form the decoder_layers
+
+# ---------------- Dataset Parameters ----------------
+perf_scale: 10
+type_map:
+  PIPE: pipeline
+  PARA: parallel
+  TILE: tile
+validation_ratio: 0.2
+min_samples_per_group: 20
+validation_ratio_fine_tune: 0.9
+
+
+# ---------------- Training Parameters ----------------
+batch_size: 8
+device: "cuda:0" # GPU device or "cpu"
+
+# ---------------- Stage 1 ----------------
+stage1_batch_size: 32
+# Optional values: [16, 32, 64]
+stage1_optimizer: AdamW
+# Optional values: [AdamW, Adam, SGD]
+stage1_learning_rate: 0.00005
+# Optional values: [0.0001, 0.00005, 0.00001]
+stage1_epochs: 200
+# Optional values: [50, 100, 200, 300, 500]
+model_stage1_path: "best_model_stage1.pth"
+
+# ---------------- Stage 2 ----------------
+stage2_batch_size: 32
+# Optional values: [16, 32, 64]
+stage2_optimizer: AdamW
+# Optional values: [AdamW, Adam]
+stage2_learning_rate: 0.00001
+# Optional values: [0.00005, 0.00001, 0.000005]
+stage2_epochs: 150
+# Optional values: [50, 100, 150, 200, 300]
+model_stage2_path: "best_model_stage2.pth"
+
+# ---------------- Stage 3 ----------------
+stage3_batch_size: 4
+# Optional values: [1, 2, 4, 8]
+stage3_optimizer: AdamW
+# Optional values: [AdamW, Adam]
+stage3_learning_rate: 0.000005
+# Optional values: [0.00001, 0.000005, 0.000001]
+stage3_epochs: 100
+# Optional values: 20, 50, 100, 200]
+model_stage3_path: "best_model_stage3.pth"
+
+# ---------------- Final Finetuning ----------------
+finetune_batch_size: 2
+# Optional values: [1, 2, 4]
+finetune_optimizer: AdamW
+# Optional values: [AdamW, Adam]
+finetune_learning_rate: 0.000002
+# Optional values: [0.000005, 0.000002, 0.000001]
+finetune_epochs: 10
+# Optional values: [5, 10, 15, 20]
+model_finetune_path: "best_model_finetune.pth"
+
+# ---------------- Inference Parameters ----------------
+inference_batch_size: 64
+inference_time: 300
